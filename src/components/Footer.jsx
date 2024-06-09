@@ -8,8 +8,8 @@ import assets from "../assets/assets";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-200 mt-10">
-      <div className="mx-auto w-full max-w-screen-xl">
+    <footer className="bg-gray-200 mt-10 w-screen">
+      <div className="mx-auto w-full">
         <div className="grid grid-cols-2 gap-4 md:gap-8 px-4 pt-6 pb-3 lg:py-8 md:grid-cols-4">
           <div>
             <h2 className="mb-2 text-sm font-semibold text-gray-900 uppercase dark:text-black">

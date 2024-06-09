@@ -1,7 +1,9 @@
+import { useState } from "react";
 import assets from "../assets/assets";
-import { ShoppingCartOutlined } from "@mui/icons-material";
+import { ShoppingCartOutlined, Menu, Close } from "@mui/icons-material";
 
 const Navbar = () => {
+  const [show, setShow] = useState(false);
   return (
     <div className="w-screen fixed flex justify-between items-center py-2 px-5 sm:px-10 lg:px-20 shadow-md z-10 bg-white">
       <div>
@@ -17,9 +19,28 @@ const Navbar = () => {
           <ShoppingCartOutlined sx={{ fontSize: "30px" }} />
           <p className="hidden sm:block">cart</p>
         </div>
-        <button className="bg-[#FC8019] px-3 py-1 hover:scale-105 transition-all rounded-full text-white font-semibold">
+        <button className="bg-[#FC8019] px-3 py-1 hover:scale-105 transition-all rounded-full text-white font-semibold md:block hidden">
           sign In
         </button>
+
+        <button
+          onClick={() => setShow(!show)}
+          className="md:hidden block w-[30px]"
+        >
+          {show ? (
+            <Close sx={{ fontSize: "30px" }} />
+          ) : (
+            <Menu sx={{ fontSize: "30px" }} />
+          )}
+        </button>
+
+        {show ? (
+          <div className="md:hidden block fixed w-[30vw] top-[40px] right-0 bg-white shadow-sm py-3">
+            <button className="bg-[#FC8019] px-3 py-1 hover:scale-105 transition-all rounded-full text-white font-semibold">
+              sign In
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

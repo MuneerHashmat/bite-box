@@ -12,9 +12,11 @@ const Header = () => {
           looking for. Fast delivery, right to your door.
         </p>
 
-        <button className="bg-[#FC8019] px-5 sm:py-2 py-1 hover:scale-105 transition-all rounded-md text-white font-semibold text-[1rem] md:text-xl">
-          Menu
-        </button>
+        <a href="#menu">
+          <button className="bg-[#FC8019] px-5 sm:py-2 py-1 hover:scale-105 transition-all rounded-md text-white font-semibold text-[1rem] md:text-xl">
+            Menu
+          </button>
+        </a>
       </div>
       <img
         src={assets.header_img}
