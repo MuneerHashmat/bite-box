@@ -1,10 +1,59 @@
 import PropTypes from "prop-types";
-import { LocalShipping, Timer, Star } from "@mui/icons-material";
+import {
+  LocalShipping,
+  Timer,
+  Star,
+  AddCircleOutline,
+  RemoveCircleOutline,
+} from "@mui/icons-material";
 import toast, { Toaster } from "react-hot-toast";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  deleteItem,
+} from "../reducers/cartSlice";
+
 const DishCard = ({ dish }) => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const cartItem =
+    cartItems.length > 0
+      ? cartItems.find((item) => item?.id === dish.id)
+      : undefined;
+
+  const handleAddToCart = () => {
+    if (!user.active) {
+      toast.error("sign in to add items to cart", { duration: 2000 });
+      return;
+    }
+    dispatch(addItemToCart(dish));
+  };
+
+  const handleIncrement = () => {
+    dispatch(increaseItemQuantity(dish.id));
+  };
+
+  const handleDecrement = () => {
+    if (cartItem && cartItem.quantity > 1) {
+      dispatch(decreaseItemQuantity(dish.id));
+    } else {
+      dispatch(deleteItem(dish.id));
+    }
+  };
   return (
-    <div className="w-[290px] rounded-md overflow-hidden cursor-pointer shadow-md relative">
-      <Toaster />
+    <div className="sm:w-[290px] w-[90vw]  rounded-md overflow-hidden cursor-pointer shadow-md relative">
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            color: "red",
+          },
+        }}
+      />
       <img
         src={dish.image}
         alt={dish.name}
@@ -28,12 +77,26 @@ const DishCard = ({ dish }) => {
             Price: <span> &#8377;{dish.price}</span>
           </p>
 
-          <button
-            onClick={() => toast.success("added")}
-            className="bg-[#FC8019] text-sm font-semibold text-white rounded-md p-2 hover:scale-105 transition-all"
-          >
-            Add to cart
-          </button>
+          {cartItem ? (
+            <div className="flex gap-2 px-2 py-1 bg-[#fc8019] text-white rounded-md">
+              <button onClick={handleIncrement}>
+                <AddCircleOutline />
+              </button>
+              <p className="w-[22px] text-center font-bold">
+                {cartItem.quantity}
+              </p>
+              <button onClick={handleDecrement}>
+                <RemoveCircleOutline />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleAddToCart}
+              className="bg-[#FC8019] text-sm font-semibold text-white rounded-md p-2 hover:scale-105 transition-all"
+            >
+              Add to cart
+            </button>
+          )}
         </div>
       </div>
 

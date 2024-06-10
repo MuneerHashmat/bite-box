@@ -12,7 +12,5 @@ export const store = configureStore({
 store.subscribe(() => {
   const state = store.getState();
   const cartState = state.cart;
-  const userState = state.user;
-  localStorage.setItem("cartItems", JSON.stringify(cartState));
-  localStorage.setItem("user", JSON.stringify(userState));
+  localStorage.setItem("cart", JSON.stringify(cartState));
 });

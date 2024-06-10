@@ -7,16 +7,21 @@ import {
   AccountCircle,
 } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleActive } from "../reducers/userSlice";
 
 const Navbar = () => {
   const [show, setShow] = useState(false); //for hamburger menu
+  const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   console.log(user);
 
   return (
-    <div className="w-screen fixed top-0 flex justify-between items-center py-2 px-5 sm:px-10 lg:px-20 shadow-md z-10 bg-white">
+    <div className="w-screen fixed top-0 flex justify-between items-center py-2 px-5 sm:px-10 lg:px-20 shadow-md z-20 bg-white">
       <div>
         <img
           src={assets.main_logo}
@@ -27,20 +32,20 @@ const Navbar = () => {
 
       <div className="flex justify-between sm:gap-5 gap-2 items-center">
         <Link to="/cart">
-          <div className="hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex">
+          <div className="hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative">
             <ShoppingCartOutlined sx={{ fontSize: "30px" }} />
             <p className="hidden sm:block">cart</p>
+            <p className="bg-red-600 rounded-full text-white absolute top-[-5px] right-0 sm:right-9 text-xs w-[13px] text-center">
+              {cartItems.length > 0 ? cartItems.length : ""}
+            </p>
           </div>
         </Link>
 
         <div className="md:block hidden cursor-pointer">
           {user.active ? (
-            <div className="flex items-center gap-1">
+            <button onClick={() => setShowProfile(!showProfile)}>
               <AccountCircle sx={{ color: "#fc8019", fontSize: "30px" }} />
-              <p className="text-sm text-[#fc8019]">
-                {user.userData?.name || null}
-              </p>
-            </div>
+            </button>
           ) : (
             <button
               onClick={() => navigate("/login")}
@@ -50,6 +55,17 @@ const Navbar = () => {
             </button>
           )}
         </div>
+        {showProfile && user.active ? (
+          <div className="fixed z-30 top-[60px] right-6 flex flex-col gap-2 bg-gray-200 p-3">
+            <p>{user.userData.name ? user.userData.name : ""}</p>
+            <button
+              onClick={() => dispatch(toggleActive(false))}
+              className="text-sm bg-[#fc8019] p-1 rounded-md text-white"
+            >
+              Log out
+            </button>
+          </div>
+        ) : null}
 
         <button
           onClick={() => setShow(!show)}

@@ -11,10 +11,13 @@ export const userSlice = createSlice({
   reducers: {
     addUser: (state, action) => {
       const newUser = { active: true, userData: action.payload };
-      state = newUser;
+      localStorage.setItem("user", JSON.stringify(newUser));
+      state.active = true;
+      state.userData = action.payload;
     },
     toggleActive: (state, action) => {
-      state = { ...state, active: action.payload };
+      state.active = action.payload;
+      localStorage.setItem("user", JSON.stringify(state));
     },
   },
 });
