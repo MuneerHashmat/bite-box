@@ -7,6 +7,7 @@ import discord from "./discord.svg";
 import twitter from "./twitter-alt-circle.svg";
 import linkedin from "./linkedin.svg";
 import github from "./github.svg";
+import login_bg from "./login_bg.png";
 
 const assets = {
   main_logo,
@@ -18,6 +19,7 @@ const assets = {
   twitter,
   linkedin,
   github,
+  login_bg,
 };
 
 export default assets;

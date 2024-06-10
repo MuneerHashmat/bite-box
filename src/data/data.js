@@ -405,7 +405,7 @@ export const foodItems = [
   },
   {
     id: "36",
-    name: "Fish Curry",
+    name: "Fish Tacos",
     image: food_36,
     price: 190,
     description:
