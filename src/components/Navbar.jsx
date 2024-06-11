@@ -31,13 +31,21 @@ const Navbar = () => {
         />
       </div>
 
-      <ul className="md:flex hidden text-lg">
+      <ul className="md:flex hidden text-lg items-center gap-6">
         <li
           className={`hover:underline hover:text-[#fc8019] ${
             location.pathname === "/" ? "text-[#fc8019]" : "text-black"
           }`}
         >
           <Link to="/">home</Link>
+        </li>
+
+        <li
+          className={`hover:underline hover:text-[#fc8019] ${
+            location.pathname === "/getapp" ? "text-[#fc8019]" : "text-black"
+          }`}
+        >
+          <Link to="/getapp">get app</Link>
         </li>
       </ul>
 
@@ -59,7 +67,12 @@ const Navbar = () => {
         <div className="md:block hidden cursor-pointer">
           {user.active ? (
             <button onClick={() => setShowProfile(!showProfile)}>
-              <AccountCircle sx={{ color: "#fc8019", fontSize: "30px" }} />
+              <AccountCircle
+                sx={{
+                  color: showProfile ? "#fc8019" : "black",
+                  fontSize: "30px",
+                }}
+              />
             </button>
           ) : (
             <button

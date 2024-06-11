@@ -11,6 +11,10 @@ import login_bg from "./login_bg.png";
 import cart from "./cart.png";
 import shopping from "./shopping.png";
 import payment from "./payment.png";
+import logo3 from "./logo3.png";
+import phone from "./phone.png";
+import appstore from "./appstore.svg";
+import playstore from "./playstore.svg";
 
 const assets = {
   main_logo,
@@ -26,6 +30,10 @@ const assets = {
   cart,
   shopping,
   payment,
+  logo3,
+  phone,
+  appstore,
+  playstore,
 };
 
 export default assets;

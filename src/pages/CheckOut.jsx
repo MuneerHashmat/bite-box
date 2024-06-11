@@ -1,15 +1,66 @@
 import assets from "../assets/assets";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { resetCart } from "../reducers/cartSlice";
+import { useState } from "react";
 
 const CheckOut = () => {
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [name, setName] = useState(user.userData.name || "");
+  const [email, setEmail] = useState(user.userData.email || "");
+  const [address, setAddress] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+
   const totalPrice =
     cartItems.reduce((value, item) => {
       return value + item.price * item.quantity;
     }, 0) + 25;
+  const amount = totalPrice * 100;
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    handlePayment();
+  };
+
+  const handlePayment = () => {
+    const options = {
+      key: "rzp_test_3dWNQviGU2CH6t",
+      amount: amount,
+      currency: "INR",
+      name: "Bite Box",
+      description: "Place Order",
+      image: `${assets.logo3}`,
+      handler: (response) => {
+        console.log(response);
+        setName("");
+        setEmail("");
+        setAddress("");
+        setPhoneNo("");
+        setPinCode("");
+        dispatch(resetCart());
+        navigate("/cart", { state: { from: "/checkout" } });
+      },
+      prefill: {
+        name: `${name}`,
+        email: `${email}`,
+        contact: `${phoneNo}`,
+      },
+      notes: {
+        address: `${address + ", " + pinCode}`,
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
 
   return (
     <div
@@ -30,21 +81,28 @@ const CheckOut = () => {
         <h1 className="font-semibold text-xl text-center px-2">
           set your spot for the feast!
         </h1>
-        <form className="w-full px-5 py-2 flex flex-col gap-3">
-          <div className="flex gap-2">
-            <div className="flex flex-col items-start">
+        <form
+          onSubmit={handleOnSubmit}
+          className="w-full px-5 py-2 flex flex-col gap-3"
+        >
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col items-start sm:w-[40%]">
               <input
                 type="text"
                 placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required
                 className="p-1 outline-[#fc8019] border border-gray-400 w-full"
               />
             </div>
 
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start sm:w-[60%]">
               <input
                 type="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="p-1 outline-[#fc8019] border border-gray-400 w-full"
               />
@@ -54,6 +112,8 @@ const CheckOut = () => {
             <textarea
               required
               placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               className="p-1 outline-[#fc8019] border border-gray-400 w-full"
             ></textarea>
           </div>
@@ -62,6 +122,8 @@ const CheckOut = () => {
               <input
                 type="number"
                 placeholder="pincode"
+                value={pinCode}
+                onChange={(e) => setPinCode(e.target.value)}
                 required
                 className="p-1 outline-[#fc8019] border border-gray-400 w-full"
               />
@@ -71,6 +133,8 @@ const CheckOut = () => {
               <input
                 type="number"
                 placeholder="phone no."
+                value={phoneNo}
+                onChange={(e) => setPhoneNo(e.target.value)}
                 required
                 className="p-1 outline-[#fc8019] border border-gray-400 w-full"
               />

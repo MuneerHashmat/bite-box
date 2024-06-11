@@ -8,12 +8,22 @@ import {
   decreaseItemQuantity,
   deleteItem,
 } from "../reducers/cartSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const from = location.state?.from || "";
+    if (from === "/checkout") {
+      toast.success("order placed successfully");
+    }
+  }, [location]);
 
   const totalPrice = cartItems.reduce((value, item) => {
     return value + item.price * item.quantity;
@@ -31,6 +41,7 @@ const Cart = () => {
   return (
     <div className="pt-24">
       <Navbar />
+      <Toaster />
       <div className="w-[90vw] sm:w-[600px] min-h-[50vh] bg-[#fc8019] mx-auto mt-5 py-3 px-2 overflow-auto relative">
         {cartItems.length == 0 ? (
           <div className="text-white flex flex-col gap-4 items-center">
