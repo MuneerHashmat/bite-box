@@ -31,6 +31,7 @@ const DishCard = ({ dish }) => {
       return;
     }
     dispatch(addItemToCart(dish));
+    toast.success("item added to cart");
   };
 
   const handleIncrement = () => {
@@ -46,14 +47,7 @@ const DishCard = ({ dish }) => {
   };
   return (
     <div className="sm:w-[290px] w-[90vw]  rounded-md overflow-hidden cursor-pointer shadow-md relative">
-      <Toaster
-        toastOptions={{
-          className: "",
-          style: {
-            color: "red",
-          },
-        }}
-      />
+      <Toaster />
       <img
         src={dish.image}
         alt={dish.name}

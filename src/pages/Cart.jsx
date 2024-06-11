@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -80,19 +81,6 @@ const Cart = () => {
             ))}
           </div>
         )}
-        {cartItems.length > 0 ? (
-          <div className="sticky bottom-0 bg-white w-full flex justify-between items-center">
-            <div className="flex gap-7 items-center">
-              <img src={assets.shopping} alt="" className="w-[60px]" />
-              <p className="text-xl text-gray-700 font-bold">
-                Total:{" "}
-                <span className="font-sans text-black">
-                  &#8377;{totalPrice}.00
-                </span>
-              </p>
-            </div>
-          </div>
-        ) : null}
       </div>
       {cartItems.length == 0 ? (
         <div className="w-screen flex items-center justify-center mt-7">
@@ -103,7 +91,40 @@ const Cart = () => {
             Go to Home
           </button>
         </div>
-      ) : null}
+      ) : (
+        <div className="w-[90vw] sm:w-[600px] px-2 py-3 bg-[#fc8019] mx-auto">
+          <div className="bg-white w-full h-full flex justify-between items-center px-3">
+            {user.active ? (
+              <>
+                <div className="flex gap-2 sm:gap-7 items-center">
+                  <img src={assets.shopping} alt="" className="w-[60px]" />
+                  <p className="text-lg text-gray-700 font-bold">
+                    Total:{" "}
+                    <span className="font-sans text-black text-xl">
+                      &#8377;{totalPrice}.00
+                    </span>
+                  </p>
+                </div>
+                <button
+                  onClick={() => navigate("/checkout")}
+                  className="p-2 rounded-md font-bold text-white bg-[#fc8019] hover:scale-[1.01] transition-all"
+                >
+                  Checkout
+                </button>
+              </>
+            ) : (
+              <div className="w-full h-[70px] bg-white flex justify-center items-center">
+                <button
+                  onClick={() => navigate("/login")}
+                  className="p-2 text-white bg-[#fc8019] hover:scale-[1.01] transition-all text-lg"
+                >
+                  Sign In to checkout
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   );

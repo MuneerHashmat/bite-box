@@ -6,7 +6,7 @@ import {
   Close,
   AccountCircle,
 } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleActive } from "../reducers/userSlice";
 
@@ -15,6 +15,7 @@ const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const user = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -30,9 +31,23 @@ const Navbar = () => {
         />
       </div>
 
+      <ul className="md:flex hidden text-lg">
+        <li
+          className={`hover:underline hover:text-[#fc8019] ${
+            location.pathname === "/" ? "text-[#fc8019]" : "text-black"
+          }`}
+        >
+          <Link to="/">home</Link>
+        </li>
+      </ul>
+
       <div className="flex justify-between sm:gap-5 gap-2 items-center">
         <Link to="/cart">
-          <div className="hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative">
+          <div
+            className={`hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative ${
+              location.pathname === "/cart" ? "text-[#fc8019]" : "text-black"
+            }`}
+          >
             <ShoppingCartOutlined sx={{ fontSize: "30px" }} />
             <p className="hidden sm:block">cart</p>
             <p className="bg-red-600 rounded-full text-white absolute top-[-5px] right-0 sm:right-9 text-xs w-[13px] text-center">
@@ -56,7 +71,7 @@ const Navbar = () => {
           )}
         </div>
         {showProfile && user.active ? (
-          <div className="fixed z-30 top-[60px] right-6 flex flex-col gap-2 bg-gray-200 p-3">
+          <div className="fixed z-30 top-[60px] right-6 flex flex-col gap-2 bg-white shadow-sm p-3">
             <p>{user.userData.name ? user.userData.name : ""}</p>
             <button
               onClick={() => dispatch(toggleActive(false))}
@@ -79,14 +94,40 @@ const Navbar = () => {
         </button>
 
         {show ? (
-          <div className="md:hidden block fixed w-[30vw] top-[40px] right-0 bg-white shadow-sm py-3">
-            {user.active ? (
-              <AccountCircle />
-            ) : (
-              <button className="bg-[#FC8019] px-3 py-1 hover:scale-105 transition-all rounded-full text-white font-semibold">
-                sign In
-              </button>
-            )}
+          <div className="md:hidden flex fixed min-w-[170px] top-[50px] right-0 bg-white shadow-sm py-3 flex-col gap-4 z-30 p-3 rounded-md">
+            <div>
+              {user.active ? (
+                <div className="flex items-center gap-4">
+                  <div className="flex gap-1 items-center">
+                    <AccountCircle sx={{ fontSize: "30px" }} />
+                    <p>{user.userData.name.split(" ")[0]}</p>
+                  </div>
+                  <button
+                    onClick={() => dispatch(toggleActive(false))}
+                    className="text-sm bg-[#fc8019] p-1 rounded-md text-white hover:scale-105 transition-all"
+                  >
+                    Log out
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => navigate("/login")}
+                  className="bg-[#FC8019] p-1 hover:scale-105 transition-all text-sm rounded-md text-white font-semibold"
+                >
+                  sign In
+                </button>
+              )}
+              <hr className="border-gray-600 mt-2" />
+            </div>
+            <Link to="/">
+              <p
+                className={`hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative ${
+                  location.pathname === "/" ? "text-[#fc8019]" : "text-black"
+                }`}
+              >
+                home
+              </p>
+            </Link>
           </div>
         ) : null}
       </div>

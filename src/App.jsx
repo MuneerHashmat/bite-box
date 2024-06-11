@@ -3,6 +3,7 @@ import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/checkout" element={<CheckOut />} />
         </Routes>
       </Router>
     </>

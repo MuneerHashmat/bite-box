@@ -10,6 +10,7 @@ import github from "./github.svg";
 import login_bg from "./login_bg.png";
 import cart from "./cart.png";
 import shopping from "./shopping.png";
+import payment from "./payment.png";
 
 const assets = {
   main_logo,
@@ -24,6 +25,7 @@ const assets = {
   login_bg,
   cart,
   shopping,
+  payment,
 };
 
 export default assets;
