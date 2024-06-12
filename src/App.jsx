@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import CheckOut from "./pages/CheckOut";
 import GetApp from "./pages/GetApp";
+import ChatBot from "./pages/ChatBot";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/getapp" element={<GetApp />} />
+          <Route path="/chatbot" element={<ChatBot />} />
         </Routes>
       </Router>
     </>

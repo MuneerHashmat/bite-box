@@ -3,14 +3,15 @@ import Navbar from "../components/Navbar";
 import Footer from "./../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import {
   increaseItemQuantity,
   decreaseItemQuantity,
   deleteItem,
 } from "../reducers/cartSlice";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
+
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user);

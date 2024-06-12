@@ -1,0 +1,19 @@
+div>h2{
+    font-weight: bold;
+    font-size: 17px;
+    margin: 0 0 10px 0;
+  }
+
+p>strong{
+    display: block;
+    margin: 10px 0;
+  }
+
+.content li{
+    list-style-type: disc;
+    margin-left: 15px;
+  }
+  
+.content ul{
+    margin: 10px 0;
+  }

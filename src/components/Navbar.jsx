@@ -1,14 +1,14 @@
 import { useState } from "react";
 import assets from "../assets/assets";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleActive } from "../reducers/userSlice";
 import {
   ShoppingCartOutlined,
   Menu,
   Close,
   AccountCircle,
 } from "@mui/icons-material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleActive } from "../reducers/userSlice";
 
 const Navbar = () => {
   const [show, setShow] = useState(false); //for hamburger menu
@@ -46,6 +46,14 @@ const Navbar = () => {
           }`}
         >
           <Link to="/getapp">get app</Link>
+        </li>
+
+        <li
+          className={`hover:underline hover:text-[#fc8019] ${
+            location.pathname === "/chatbot" ? "text-[#fc8019]" : "text-black"
+          }`}
+        >
+          <Link to="/chatbot">bite bot</Link>
         </li>
       </ul>
 
@@ -107,7 +115,7 @@ const Navbar = () => {
         </button>
 
         {show ? (
-          <div className="md:hidden flex fixed min-w-[170px] top-[50px] right-0 bg-white shadow-sm py-3 flex-col gap-4 z-30 p-3 rounded-md">
+          <div className="md:hidden flex fixed min-w-[170px] top-[50px] right-0 bg-white shadow-sm py-3 flex-col gap-2 z-30 p-3 rounded-md">
             <div>
               {user.active ? (
                 <div className="flex items-center gap-4">
@@ -139,6 +147,29 @@ const Navbar = () => {
                 }`}
               >
                 home
+              </p>
+            </Link>
+            <Link to="/getapp">
+              <p
+                className={`hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative ${
+                  location.pathname === "/getapp"
+                    ? "text-[#fc8019]"
+                    : "text-black"
+                }`}
+              >
+                get app
+              </p>
+            </Link>
+
+            <Link to="/chatbot">
+              <p
+                className={`hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative ${
+                  location.pathname === "/chatbot"
+                    ? "text-[#fc8019]"
+                    : "text-black"
+                }`}
+              >
+                bite bot
               </p>
             </Link>
           </div>

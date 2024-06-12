@@ -15,6 +15,8 @@ import logo3 from "./logo3.png";
 import phone from "./phone.png";
 import appstore from "./appstore.svg";
 import playstore from "./playstore.svg";
+import bot_big from "./bot_big.png";
+import bot_small from "./bot_small.png";
 
 const assets = {
   main_logo,
@@ -34,6 +36,8 @@ const assets = {
   phone,
   appstore,
   playstore,
+  bot_big,
+  bot_small,
 };
 
 export default assets;
