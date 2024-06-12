@@ -11,7 +11,9 @@ import "../utils/chatbot.css";
 const ChatBot = () => {
   const apiKey = "AIzaSyByGcrMCfMKZNNta-wdWMeuPXPWlZWlt8Y";
   const genAI = new GoogleGenerativeAI(apiKey);
-  const [chats, setChats] = useState([]);
+  const storedChats = sessionStorage.getItem("chats");
+  const initialChats = storedChats ? JSON.parse(storedChats) : [];
+  const [chats, setChats] = useState(initialChats);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
@@ -40,12 +42,13 @@ const ChatBot = () => {
   useEffect(() => {
     console.log(chats);
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    sessionStorage.setItem("chats", JSON.stringify(chats));
   }, [chats]);
 
   return (
     <>
       <Navbar />
-      <div className="fixed bottom-0 w-screen bg-white pb-2">
+      <div className="fixed bottom-0 w-screen bg-white pb-4">
         <div className="w-[95vw] md:w-[65vw] rounded-full bg-gray-200 py-5 px-7 mx-auto">
           <form onSubmit={handleGenerateResponse} className="flex">
             <input
@@ -63,7 +66,7 @@ const ChatBot = () => {
         </div>
       </div>
 
-      <div className="content pt-24 w-[95vw] md:w-[63vw] mb-[100px] mx-auto flex flex-col gap-7">
+      <div className="content pt-24 w-[95vw] md:w-[63vw] mb-[100px] mx-auto flex flex-col gap-7 px-1">
         {chats.length == 0 ? (
           <div className="md:w-[70%] w-full text-center md:text-start mx-auto flex flex-col md:flex-row items-center justify-center gap-6">
             <img src={assets.bot_big} className="w-[150px]" />
@@ -92,7 +95,7 @@ const ChatBot = () => {
                     alt="bot"
                     className="w-[30px] h-[30px]"
                   />
-                  <div className="bg-white rounded-lg max-w-[90%] text-left ml-2 pt-[5px]">
+                  <div className="bg-white rounded-lg max-w-[90%] md:max-w-80% text-left ml-2 pt-[5px]">
                     <Markdown>{chat.content}</Markdown>
                   </div>
                 </div>

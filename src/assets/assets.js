@@ -17,6 +17,7 @@ import appstore from "./appstore.svg";
 import playstore from "./playstore.svg";
 import bot_big from "./bot_big.png";
 import bot_small from "./bot_small.png";
+import google from "./google.png";
 
 const assets = {
   main_logo,
@@ -38,6 +39,7 @@ const assets = {
   playstore,
   bot_big,
   bot_small,
+  google,
 };
 
 export default assets;

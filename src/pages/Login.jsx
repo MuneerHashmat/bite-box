@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import assets from "../assets/assets";
 import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import app from "../Firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signIn } from "../reducers/userSlice";
+import { addUser } from "../reducers/userSlice";
 import toast from "react-hot-toast";
 import { BeatLoader } from "react-spinners";
 
@@ -15,17 +20,18 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth(app);
 
   const logInHandler = async (e) => {
     e.preventDefault();
-    const auth = getAuth(app);
     setLoading(true);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
       const uid = response.user.uid;
       const user = JSON.parse(localStorage.getItem(uid));
-      dispatch(signIn(user));
+      dispatch(addUser(user));
       toast.success("sign in successful", { duration: 1500 });
       setTimeout(() => {
         navigate("/");
@@ -47,6 +53,27 @@ const Login = () => {
     }
   };
 
+  const continueWithGoogleHandler = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      console.log(token);
+      const user = result.user;
+      console.log(user);
+      const newUser = { name: user.displayName, email: user.email };
+      localStorage.setItem(user.uid, JSON.stringify(newUser));
+      dispatch(addUser(newUser));
+      toast.success("sign up successful", { duration: 1500 });
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    } catch (e) {
+      const errorCode = e.code;
+      toast.error(errorCode);
+    }
+  };
+
   return (
     <div>
       <div
@@ -56,43 +83,59 @@ const Login = () => {
             "linear-gradient(177deg, rgba(252,128,25,1) 6%, rgba(255,85,52,1) 82%)",
         }}
       >
-        <div className="md:w-[400px] w-[90vw]  flex flex-col gap-3 items-center bg-white rounded-md shadow-customShadow">
+        <div className="sm:w-[400px] w-[90vw]  flex flex-col gap-3 items-center bg-white rounded-md shadow-customShadow">
           <img src={assets.main_logo} alt="logo" className="w-[150px] mt-3" />
-          <h1 className="font-semibold text-2xl mt-5">Welcome back!</h1>
-          <form
-            onSubmit={logInHandler}
-            className="w-full px-5 py-5 flex flex-col gap-5"
-          >
-            <div className="flex flex-col items-start w-full">
-              <label className="text-right">Email:</label>
-              <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="p-1 outline-[#fc8019] border border-gray-400 w-full"
-              />
-            </div>
-            <div className="flex flex-col items-start w-full">
-              <label className="text-right">Password:</label>
-              <input
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="p-1 outline-[#fc8019] border border-gray-400 w-full"
-              />
-            </div>
+          <h1 className="font-semibold text-xl">Welcome back!</h1>
+          <div className="w-full">
+            <form
+              onSubmit={logInHandler}
+              className="w-full px-5 flex flex-col gap-5"
+            >
+              <div className="flex flex-col items-start w-full">
+                <label className="text-right">Email:</label>
+                <input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="p-1 outline-[#fc8019] border border-gray-400 w-full"
+                />
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <label className="text-right">Password:</label>
+                <input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="p-1 outline-[#fc8019] border border-gray-400 w-full"
+                />
+              </div>
 
-            <button className="bg-[#fc8019] px-3 py-[6px] text-white hover:scale-[1.01] transition-all">
-              {loading ? <BeatLoader color="white" /> : "Sign In"}
+              <button className="bg-[#fc8019] px-3 py-[6px] text-white hover:scale-[1.01] transition-all">
+                {loading ? <BeatLoader color="white" /> : "Sign In"}
+              </button>
+
+              <p className="text-center">
+                Don&apos;t have an account?{"  "}
+                <Link to={"/signup"}>
+                  <span className="text-[#fc8019] underline">Sign Up</span>{" "}
+                </Link>
+              </p>
+            </form>
+          </div>
+          <div className="w-full px-5 py-1 flex flex-col items-center gap-3 mb-3">
+            <div className="flex items-center w-full">
+              <div className="grow border border-gray-300"></div>
+              <span className="mx-2">Or</span>
+              <div className="grow border border-gray-300"></div>
+            </div>
+            <button
+              onClick={continueWithGoogleHandler}
+              className="flex gap-2 w-full justify-center border border-gray-400 py-2 shadow-md hover:scale-[1.01] transition-all"
+            >
+              <img src={assets.google} className="w-[24px]" />
+              <span>Continue with Google</span>
             </button>
-
-            <p className="text-center">
-              Don&apos;t have an account?{"  "}
-              <Link to={"/signup"}>
-                <span className="text-[#fc8019] underline">Sign Up</span>{" "}
-              </Link>
-            </p>
-          </form>
+          </div>
         </div>
       </div>
     </div>

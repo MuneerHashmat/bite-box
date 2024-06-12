@@ -1,19 +1,24 @@
 div>h2{
-    font-weight: bold;
-    font-size: 17px;
+    font-weight: 500;
+    font-size: 18px;
     margin: 0 0 10px 0;
   }
 
 p>strong{
     display: block;
-    margin: 10px 0;
+    margin: 7px 0;
+    font-weight: 600;
   }
 
 .content li{
     list-style-type: disc;
     margin-left: 15px;
   }
+
+  .content li>strong{
+    font-weight: 500;
+  }
   
 .content ul{
-    margin: 10px 0;
+    margin: 7px 0;
   }

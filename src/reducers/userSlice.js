@@ -10,23 +10,15 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      const newUser = { active: true, userData: action.payload };
-      localStorage.setItem("user", JSON.stringify(newUser));
       state.active = true;
       state.userData = action.payload;
     },
     toggleActive: (state, action) => {
       state.active = action.payload;
-      localStorage.setItem("user", JSON.stringify(state));
-    },
-    signIn: (state, action) => {
-      state.active = true;
-      state.userData = action.payload;
-      localStorage.setItem("user", JSON.stringify(state));
     },
   },
 });
 
-export const { addUser, toggleActive, signIn } = userSlice.actions;
+export const { addUser, toggleActive } = userSlice.actions;
 
 export default userSlice.reducer;

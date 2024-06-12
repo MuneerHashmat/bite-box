@@ -96,7 +96,7 @@ const Navbar = () => {
         </div>
         {showProfile && user.active ? (
           <div className="fixed z-30 top-[60px] right-6 flex flex-col gap-2 bg-white shadow-sm p-3">
-            <p>{user.userData.name ? user.userData.name : ""}</p>
+            <p>{user.userData.name ? user.userData.name.split(" ")[0] : ""}</p>
             <button
               onClick={handleLogOut}
               className="text-sm bg-[#fc8019] p-1 rounded-md text-white"
