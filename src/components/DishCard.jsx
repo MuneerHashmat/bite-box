@@ -6,7 +6,7 @@ import {
   AddCircleOutline,
   RemoveCircleOutline,
 } from "@mui/icons-material";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addItemToCart,
@@ -31,7 +31,7 @@ const DishCard = ({ dish }) => {
       return;
     }
     dispatch(addItemToCart(dish));
-    toast.success("item added to cart");
+    toast.success("item added to cart", { duration: 2000 });
   };
 
   const handleIncrement = () => {
@@ -47,7 +47,6 @@ const DishCard = ({ dish }) => {
   };
   return (
     <div className="sm:w-[290px] w-[90vw]  rounded-md overflow-hidden cursor-pointer shadow-md relative">
-      <Toaster />
       <img
         src={dish.image}
         alt={dish.name}

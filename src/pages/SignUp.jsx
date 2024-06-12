@@ -4,7 +4,7 @@ import app from "../Firebase/firebaseConfig";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { addUser } from "../reducers/userSlice";
 import { BeatLoader } from "react-spinners";
 
@@ -34,9 +34,14 @@ const SignUp = () => {
         password
       );
       console.log(response);
+      const uid = response.user.uid;
       const user = { name: name, email: email, password: password };
+      localStorage.setItem(uid, JSON.stringify(user));
       dispatch(addUser(user));
-      navigate("/");
+      toast.success("sign up successful", { duration: 1500 });
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (e) {
       if (e.code === "auth/email-already-in-use") {
         toast.error("Email already in use!", { duration: 2000 });
@@ -48,7 +53,6 @@ const SignUp = () => {
 
   return (
     <div>
-      <Toaster />
       <div
         className="w-screen h-[100vh] flex justify-center items-center"
         style={{

@@ -5,8 +5,8 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../Firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { toggleActive } from "../reducers/userSlice";
-import toast, { Toaster } from "react-hot-toast";
+import { signIn } from "../reducers/userSlice";
+import toast from "react-hot-toast";
 import { BeatLoader } from "react-spinners";
 
 const Login = () => {
@@ -23,8 +23,13 @@ const Login = () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
-      dispatch(toggleActive(true));
-      navigate("/");
+      const uid = response.user.uid;
+      const user = JSON.parse(localStorage.getItem(uid));
+      dispatch(signIn(user));
+      toast.success("sign in successful", { duration: 1500 });
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (e) {
       if (
         e.code === "auth/invalid-credential" ||
@@ -44,7 +49,6 @@ const Login = () => {
 
   return (
     <div>
-      <Toaster />
       <div
         className="w-screen h-[100vh] flex justify-center items-center"
         style={{

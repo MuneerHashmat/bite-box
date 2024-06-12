@@ -3,6 +3,7 @@ import assets from "../assets/assets";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleActive } from "../reducers/userSlice";
+import toast from "react-hot-toast";
 import {
   ShoppingCartOutlined,
   Menu,
@@ -18,8 +19,10 @@ const Navbar = () => {
   const location = useLocation();
   const user = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.cartItems);
-
-  console.log(user);
+  const handleLogOut = () => {
+    dispatch(toggleActive(false));
+    toast.success("logged out", { duration: 1000 });
+  };
 
   return (
     <div className="w-screen fixed top-0 flex justify-between items-center py-2 px-5 sm:px-10 lg:px-20 shadow-md z-20 bg-white">
@@ -95,7 +98,7 @@ const Navbar = () => {
           <div className="fixed z-30 top-[60px] right-6 flex flex-col gap-2 bg-white shadow-sm p-3">
             <p>{user.userData.name ? user.userData.name : ""}</p>
             <button
-              onClick={() => dispatch(toggleActive(false))}
+              onClick={handleLogOut}
               className="text-sm bg-[#fc8019] p-1 rounded-md text-white"
             >
               Log out
@@ -124,7 +127,7 @@ const Navbar = () => {
                     <p>{user.userData.name.split(" ")[0]}</p>
                   </div>
                   <button
-                    onClick={() => dispatch(toggleActive(false))}
+                    onClick={handleLogOut}
                     className="text-sm bg-[#fc8019] p-1 rounded-md text-white hover:scale-105 transition-all"
                   >
                     Log out

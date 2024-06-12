@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { resetCart } from "../reducers/cartSlice";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const CheckOut = () => {
   const navigate = useNavigate();
@@ -43,7 +44,10 @@ const CheckOut = () => {
         setPhoneNo("");
         setPinCode("");
         dispatch(resetCart());
-        navigate("/cart", { state: { from: "/checkout" } });
+        toast.success("order placed successfully");
+        setTimeout(() => {
+          navigate("/cart");
+        }, 1000);
       },
       prefill: {
         name: `${name}`,

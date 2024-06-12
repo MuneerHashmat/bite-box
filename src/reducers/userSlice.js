@@ -19,9 +19,14 @@ export const userSlice = createSlice({
       state.active = action.payload;
       localStorage.setItem("user", JSON.stringify(state));
     },
+    signIn: (state, action) => {
+      state.active = true;
+      state.userData = action.payload;
+      localStorage.setItem("user", JSON.stringify(state));
+    },
   },
 });
 
-export const { addUser, toggleActive } = userSlice.actions;
+export const { addUser, toggleActive, signIn } = userSlice.actions;
 
 export default userSlice.reducer;

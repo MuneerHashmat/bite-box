@@ -6,10 +6,12 @@ import Login from "./pages/Login";
 import CheckOut from "./pages/CheckOut";
 import GetApp from "./pages/GetApp";
 import ChatBot from "./pages/ChatBot";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
