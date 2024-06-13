@@ -44,5 +44,17 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 ### 3. Bite Bot Page
 ![image](./src/assets/screenshots/3-2.png)
 
-### 4. Sign Up                          ## 5. Log In
-![image](./src/assets/screenshots/4.png) ![image](./src/assets/screenshots/5.png)
+### 4. Sign Up                          
+![image](./src/assets/screenshots/4.png) 
+
+## 5. Log In
+![image](./src/assets/screenshots/5.png)
+
+## 6. Cart Page
+![image](./src/assets/screenshots/6.png)
+
+## 7. Checkout Page
+![image](./src/assets/screenshots/7.png)
+
+## 8. Razorpay Payment popup
+![image](./src/assets/screenshots/8.png)
