@@ -37,3 +37,12 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 
 - **Food section**
 ![image](./src/assets/screenshots/3.png)
+
+### 2. Get App Page
+![image](./src/assets/screenshots/3-1.png)
+
+### 3. Bite Bot Page
+![image](./src/assets/screenshots/3-2.png)
+
+### 4. Sign Up                          ## 5. Log In
+![image](./src/assets/screenshots/4.png) ![image](./src/assets/screenshots/5.png)
