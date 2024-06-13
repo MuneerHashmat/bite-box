@@ -56,7 +56,7 @@ const ChatBot = () => {
         <div className="w-[95vw] md:w-[65vw] rounded-full bg-gray-200 py-5 px-7 mx-auto">
           <form onSubmit={handleGenerateResponse} className="flex">
             <input
-              placeholder="message BiteBot"
+              placeholder="Ask for recipes, food tips etc."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               type="text"

@@ -34,7 +34,7 @@ const Navbar = () => {
         />
       </div>
 
-      <ul className="md:flex hidden text-lg items-center gap-6">
+      <ul className="md:flex hidden text-lg items-center gap-8">
         <li
           className={`hover:underline hover:text-[#fc8019] ${
             location.pathname === "/" ? "text-[#fc8019]" : "text-black"
