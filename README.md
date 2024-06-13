@@ -70,5 +70,5 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 - Difficulty in persisting cart data accross multiple pages.
 - Difficulty in adding responsiveness using tailwind.
 
-## Contributing
+## Contributions
 Contributions are welcome! If you have any suggestions, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
