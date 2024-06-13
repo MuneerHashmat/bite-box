@@ -61,16 +61,20 @@ const Login = () => {
       console.log(token);
       const user = result.user;
       console.log(user);
-      const newUser = { name: user.displayName, email: user.email };
+      const newUser = {
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      };
       localStorage.setItem(user.uid, JSON.stringify(newUser));
       dispatch(addUser(newUser));
-      toast.success("sign up successful", { duration: 1500 });
+      toast.success("sign in successful", { duration: 1500 });
       setTimeout(() => {
         navigate("/");
       }, 1500);
     } catch (e) {
       const errorCode = e.code;
-      toast.error(errorCode);
+      toast.error(errorCode, { duration: 1500 });
     }
   };
 

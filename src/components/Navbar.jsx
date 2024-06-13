@@ -77,14 +77,30 @@ const Navbar = () => {
 
         <div className="md:block hidden cursor-pointer">
           {user.active ? (
-            <button onClick={() => setShowProfile(!showProfile)}>
-              <AccountCircle
-                sx={{
-                  color: showProfile ? "#fc8019" : "black",
-                  fontSize: "30px",
-                }}
-              />
-            </button>
+            <div>
+              {user.userData.photo ? (
+                <button
+                  onClick={() => setShowProfile(!showProfile)}
+                  className="w-[30px] h-[30px] rounded-full overflow-hidden"
+                >
+                  <img
+                    src={user.userData.photo}
+                    className={`${
+                      showProfile ? "brightness-75" : "brightness-100"
+                    }`}
+                  />
+                </button>
+              ) : (
+                <button onClick={() => setShowProfile(!showProfile)}>
+                  <AccountCircle
+                    sx={{
+                      color: showProfile ? "#fc8019" : "black",
+                      fontSize: "30px",
+                    }}
+                  />
+                </button>
+              )}
+            </div>
           ) : (
             <button
               onClick={() => navigate("/login")}
@@ -95,7 +111,7 @@ const Navbar = () => {
           )}
         </div>
         {showProfile && user.active ? (
-          <div className="fixed z-30 top-[60px] right-6 flex flex-col gap-2 bg-white shadow-sm p-3">
+          <div className="fixed z-30 top-[60px] right-6 min-w-[70px] rounded-md flex flex-col gap-2 bg-white shadow-md p-3">
             <p>{user.userData.name ? user.userData.name.split(" ")[0] : ""}</p>
             <button
               onClick={handleLogOut}
@@ -123,7 +139,16 @@ const Navbar = () => {
               {user.active ? (
                 <div className="flex items-center gap-4">
                   <div className="flex gap-1 items-center">
-                    <AccountCircle sx={{ fontSize: "30px" }} />
+                    {user.userData.photo ? (
+                      <div className="w-[30px] h-[30px] rounded-full overflow-hidden">
+                        <img
+                          src={user.userData.photo}
+                          className="w-full h-full"
+                        />
+                      </div>
+                    ) : (
+                      <AccountCircle sx={{ fontSize: "30px" }} />
+                    )}
                     <p>{user.userData.name.split(" ")[0]}</p>
                   </div>
                   <button

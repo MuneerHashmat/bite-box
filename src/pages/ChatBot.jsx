@@ -19,12 +19,16 @@ const ChatBot = () => {
   const chatEndRef = useRef(null);
 
   const generteResponse = async (prompt) => {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const responseText = response.text();
-    console.log(responseText);
-    return responseText;
+    try {
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      const responseText = response.text();
+      console.log(responseText);
+      return responseText;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleGenerateResponse = async (e) => {
@@ -83,7 +87,7 @@ const ChatBot = () => {
             <div key={chat.id}>
               {chat.prompt ? (
                 <div className="flex justify-end">
-                  <div className="bg-gray-200 rounded-full max-w-[90%] md:max-w-[75%] text-right mr-1 px-2 py-1">
+                  <div className="bg-gray-200 rounded-full max-w-[90%] md:max-w-[75%] mr-1 px-2 py-1">
                     <p className="px-2">{chat.content}</p>
                   </div>
                   <AccountCircle sx={{ fontSize: "30px" }} />

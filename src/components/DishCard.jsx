@@ -46,7 +46,7 @@ const DishCard = ({ dish }) => {
     }
   };
   return (
-    <div className="sm:w-[290px] w-[90vw]  rounded-md overflow-hidden cursor-pointer shadow-md relative">
+    <div className="sm:w-[400px] md:w-[290px] w-[95vw]  rounded-md overflow-hidden cursor-pointer shadow-md relative">
       <img
         src={dish.image}
         alt={dish.name}

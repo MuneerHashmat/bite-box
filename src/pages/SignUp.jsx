@@ -79,7 +79,7 @@ const SignUp = () => {
       }, 1500);
     } catch (e) {
       const errorCode = e.code;
-      toast.error(errorCode);
+      toast.error(errorCode, { duration: 1500 });
     }
   };
 

@@ -48,7 +48,9 @@ const Menu = () => {
         </Carousel>
       </div>
       <hr className=" w-[90vw] md:w-[80vw] mx-auto border border-gray-300 my-5" />
-      <h1 className="ml-[10vw] text-2xl md:text-[2rem]">Popular foods</h1>
+      {!currentCategory && (
+        <h1 className="ml-[10vw] text-2xl md:text-[2rem]">Popular foods</h1>
+      )}
       <div className="mt-3 md:mt-5 mb-5 w-[80vw] mx-auto flex flex-wrap justify-center items-center gap-[1rem]">
         {(currentCategory ? foodArray : foodItems.slice(0, currentItems)).map(
           (item) => (
