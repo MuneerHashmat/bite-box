@@ -13,7 +13,8 @@ This project is a single-page food delivery website built entirely with React.js
 - Vite - A fast development server and build tool for modern web applications.
 - React JS -  A JavaScript library for building user interfaces.
 - Tailwind CSS - A CSS framework for rapidly building modern websites.
-- Firebase (used for authentication ) - Google's application development platform 
+- Firebase (used for authentication ) - Google's application development platform
+- Redux - A JavaScript library for managing application state
 - Razorpay (test only) - A payment gateway that allows businesses to accept online payments.
 - Gemini API - Official API of google gemini AI
 
@@ -25,6 +26,7 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 2. Navigate to the folder: ``` cd bite-box ```
 3. Install the dependencies: ``` npm install ```
 4. Start development server: npm run dev
+
 
 ## Screenshots:
 
@@ -58,3 +60,11 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 
 ## 8. Razorpay Payment popup
 ![image](./src/assets/screenshots/8.png)
+
+## Challenges faced during development:
+- Difficulty in managing local storage for user data.
+- Difficulty in persisting cart data accross multiple pages.
+- Difficulty in adding responsiveness using tailwind.
+
+## Contributing
+Contributions are welcome! If you have any suggestions, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
