@@ -27,3 +27,13 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 4. Start development server: npm run dev
 
 ## Screenshots:
+
+### 1. Home page
+- **Header**
+![image](./src/assets/screenshots/1.png)
+
+- **Menu section**
+![image](./src/assets/screenshots/2.png)
+
+- **Food section**
+![image](./src/assets/screenshots/3.png)
