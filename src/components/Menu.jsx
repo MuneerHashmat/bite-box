@@ -19,10 +19,10 @@ const Menu = () => {
       <h1 className="md:ml-[10vw] text-2xl text-center md:text-left md:text-[2rem]">
         What are you craving?
       </h1>
-      <div className="mt-6 w-[60vw] mx-auto relative">
+      <div className="mt-6 sm:w-[70vw] md:w-[60vw] w-[80vw] mx-auto relative">
         <Carousel
           responsive={responsive}
-          infinite={true}
+          infinite={false}
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
         >
