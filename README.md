@@ -11,6 +11,7 @@ This project is a single-page food delivery website built entirely with React.js
 - 🛒 Cart for adding food items
 - 💳 Flawless checkout functionality and payment using Razorpay (test only)
 - 🤖 AI chatbot assistant for recipes, culinary tips and more
+- 📱 Fully responsive ui
 
 ## Technologies used:
 - Vite - A fast development server and build tool for modern web applications.
