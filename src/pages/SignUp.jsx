@@ -79,7 +79,8 @@ const SignUp = () => {
       }, 1500);
     } catch (e) {
       const errorCode = e.code;
-      toast.error(errorCode, { duration: 1500 });
+      const error = errorCode.substring(5).replace(/-/g, " ");
+      toast.error(error, { duration: 1500 });
     }
   };
 
