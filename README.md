@@ -2,6 +2,9 @@
 
 This project is a single-page food delivery website built entirely with React.js. It allows users to browse through a variety of delicious dishes categorized for easy navigation. They can then add their favorite items to their cart, proceed to a secure checkout, and enjoy a delightful meal delivered straight to their doorstep (backend functionality not included in this project).
 
+## Live Demo:
+### [Bite Box](https://bite-box-five.vercel.app/) 
+
 ## Features: 
 - 🔐 Seamless user authentication using Google Firebase
 - 🍔 A wide range of food categories and items
