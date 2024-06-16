@@ -1,6 +1,6 @@
 export const generateRandomRating = () => {
   const randomDecimal = Math.random();
-  const rating = 4 + randomDecimal * (5 - 4);
+  const rating = 4 + randomDecimal;
   return rating.toFixed(1);
 };
 

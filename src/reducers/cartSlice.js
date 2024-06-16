@@ -13,14 +13,14 @@ export const cartSlice = createSlice({
     },
     increaseItemQuantity: (state, action) => {
       state.cartItems = state.cartItems.map((item) => {
-        return item?.id === action.payload
+        return item.id === action.payload
           ? { ...item, quantity: item.quantity + 1 }
           : item;
       });
     },
     decreaseItemQuantity: (state, action) => {
       state.cartItems = state.cartItems.map((item) => {
-        if (item?.id === action.payload && item.quantity > 1) {
+        if (item.id === action.payload && item.quantity > 1) {
           return { ...item, quantity: item.quantity - 1 };
         } else {
           return item;

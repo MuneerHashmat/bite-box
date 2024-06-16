@@ -84,7 +84,7 @@ const Navbar = () => {
                   className="w-[30px] h-[30px] rounded-full overflow-hidden"
                 >
                   <img
-                    src={user.userData.photo}
+                    src={user.userData.photo ? user.userData.photo : null}
                     className={`${
                       showProfile ? "brightness-75" : "brightness-100"
                     }`}
@@ -142,7 +142,7 @@ const Navbar = () => {
                     {user.userData.photo ? (
                       <div className="w-[30px] h-[30px] rounded-full overflow-hidden">
                         <img
-                          src={user.userData.photo}
+                          src={user.userData.photo ? user.userData.photo : null}
                           className="w-full h-full"
                         />
                       </div>
