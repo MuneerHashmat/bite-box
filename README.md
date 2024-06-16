@@ -2,12 +2,16 @@
 
 This project is a single-page food delivery website built entirely with React.js. It allows users to browse through a variety of delicious dishes categorized for easy navigation. They can then add their favorite items to their cart, proceed to a secure checkout, and enjoy a delightful meal delivered straight to their doorstep (backend functionality not included in this project).
 
+## Live Demo:
+### [Bite Box](https://bite-box-five.vercel.app/) 
+
 ## Features: 
 - 🔐 Seamless user authentication using Google Firebase
 - 🍔 A wide range of food categories and items
 - 🛒 Cart for adding food items
 - 💳 Flawless checkout functionality and payment using Razorpay (test only)
 - 🤖 AI chatbot assistant for recipes, culinary tips and more
+- 📱 Fully responsive ui
 
 ## Technologies used:
 - Vite - A fast development server and build tool for modern web applications.
@@ -66,5 +70,5 @@ git clone https:https://github.com/MuneerHashmat/bite-box.git
 - Difficulty in persisting cart data accross multiple pages.
 - Difficulty in adding responsiveness using tailwind.
 
-## Contributing
+## Contributions
 Contributions are welcome! If you have any suggestions, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
