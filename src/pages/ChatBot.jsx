@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import Markdown from "react-markdown";
 import { SyncLoader } from "react-spinners";
 import "../utils/chatbot.css";
+import { useSelector } from "react-redux";
 
 const ChatBot = () => {
   const apiKey = "AIzaSyByGcrMCfMKZNNta-wdWMeuPXPWlZWlt8Y";
@@ -17,6 +18,7 @@ const ChatBot = () => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const user = useSelector((state) => state.user);
 
   const generteResponse = async (prompt) => {
     try {
@@ -90,7 +92,14 @@ const ChatBot = () => {
                   <div className="bg-gray-200 rounded-full max-w-[90%] md:max-w-[75%] mr-1 px-2 py-1">
                     <p className="px-2">{chat.content}</p>
                   </div>
-                  <AccountCircle sx={{ fontSize: "30px" }} />
+                  {user.active && user.userData.photo ? (
+                    <img
+                      src={user.userData.photo}
+                      className="w-[30px] h-[30px] rounded-full"
+                    />
+                  ) : (
+                    <AccountCircle sx={{ fontSize: "30px" }} />
+                  )}
                 </div>
               ) : (
                 <div className="flex justify-start">

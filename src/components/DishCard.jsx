@@ -16,7 +16,6 @@ import {
 } from "../reducers/cartSlice";
 
 const DishCard = ({ dish }) => {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -26,10 +25,6 @@ const DishCard = ({ dish }) => {
       : undefined;
 
   const handleAddToCart = () => {
-    if (!user.active) {
-      toast.error("sign in to add items to cart", { duration: 2000 });
-      return;
-    }
     dispatch(addItemToCart(dish));
     toast.success("item added to cart", { duration: 2000 });
   };
