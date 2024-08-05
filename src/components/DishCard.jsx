@@ -18,6 +18,7 @@ import {
 const DishCard = ({ dish }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.user);
 
   const cartItem =
     cartItems.length > 0
@@ -25,6 +26,10 @@ const DishCard = ({ dish }) => {
       : undefined;
 
   const handleAddToCart = () => {
+    if (!user.active) {
+      toast.error("Sign In to add items to cart");
+      return;
+    }
     dispatch(addItemToCart(dish));
     toast.success("item added to cart", { duration: 2000 });
   };

@@ -3,6 +3,7 @@ import assets from "../assets/assets";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleActive } from "../reducers/userSlice";
+import { resetCart } from "../reducers/cartSlice";
 import toast from "react-hot-toast";
 import {
   ShoppingCartOutlined,
@@ -21,6 +22,7 @@ const Navbar = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const handleLogOut = () => {
     dispatch(toggleActive(false));
+    dispatch(resetCart());
     toast.success("logged out", { duration: 1000 });
   };
 
@@ -61,7 +63,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex justify-between sm:gap-5 gap-2 items-center">
-        <Link to="/cart">
+        <Link to="/cart" className={user.active ? "block" : "hidden"}>
           <div
             className={`hover:cursor-pointer hover:underline hover:text-[#FC8019] transition-all flex relative ${
               location.pathname === "/cart" ? "text-[#fc8019]" : "text-black"
