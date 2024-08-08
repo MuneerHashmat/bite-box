@@ -94,7 +94,9 @@ const SignUp = () => {
         }}
       >
         <div className="sm:w-[400px] w-[90vw]  flex flex-col gap-3 items-center bg-white rounded-md shadow-customShadow">
-          <img src={assets.main_logo} alt="logo" className="w-[150px] mt-3" />
+          <Link to={"/"}>
+            <img src={assets.main_logo} alt="logo" className="w-[150px] mt-3" />
+          </Link>
           <h1 className="font-semibold text-xl">
             Looks like you&apos;re new here
           </h1>

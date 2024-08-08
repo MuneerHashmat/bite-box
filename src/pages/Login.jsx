@@ -89,7 +89,9 @@ const Login = () => {
         }}
       >
         <div className="sm:w-[400px] w-[90vw]  flex flex-col gap-3 items-center bg-white rounded-md shadow-customShadow">
-          <img src={assets.main_logo} alt="logo" className="w-[150px] mt-3" />
+          <Link to={"/"}>
+            <img src={assets.main_logo} alt="logo" className="w-[150px] mt-3" />
+          </Link>
           <h1 className="font-semibold text-xl">Welcome back!</h1>
           <div className="w-full">
             <form

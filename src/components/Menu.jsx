@@ -4,16 +4,21 @@ import { menuItems } from "../data/data";
 import { CustomLeftArrow, CustomRightArrow } from "../utils/CustomArrows";
 import { responsive } from "../utils/utils";
 import { foodItems } from "../data/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DishCard from "./DishCard";
 
 const Menu = () => {
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentItems, setCurrentItems] = useState(8);
+  const [foodArray, setFoodArray] = useState(foodItems);
 
-  const foodArray = foodItems.filter((item) => {
-    return currentCategory ? item.category == currentCategory : item;
-  });
+  useEffect(() => {
+    setFoodArray(
+      foodItems.filter((item) => {
+        return currentCategory ? item.category == currentCategory : item;
+      })
+    );
+  }, [currentCategory]);
   return (
     <div className="mt-10" id="menu">
       <h1 className="md:ml-[10vw] text-2xl text-center md:text-left md:text-[2rem]">
@@ -52,7 +57,7 @@ const Menu = () => {
         <h1 className="ml-[10vw] text-2xl md:text-[2rem]">Popular foods</h1>
       )}
       <div className="mt-3 md:mt-5 mb-5 w-[80vw] mx-auto flex flex-wrap justify-center items-center gap-[1rem]">
-        {(currentCategory ? foodArray : foodItems.slice(0, currentItems)).map(
+        {(currentCategory ? foodArray : foodArray.slice(0, currentItems)).map(
           (item) => (
             <DishCard key={item.id} dish={item} />
           )
