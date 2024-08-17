@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
@@ -17,7 +22,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={user.active ? <Cart /> : <Login />} />
+          <Route
+            path="/cart"
+            element={user.active ? <Cart /> : <Navigate to={"/login"} />}
+          />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<CheckOut />} />
