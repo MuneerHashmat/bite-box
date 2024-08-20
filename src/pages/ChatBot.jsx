@@ -1,4 +1,3 @@
-import Navbar from "./../components/Navbar";
 import { Send, AccountCircle } from "@mui/icons-material";
 import assets from "../assets/assets";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -53,7 +52,6 @@ const ChatBot = () => {
 
   return (
     <>
-      <Navbar />
       <div className="fixed bottom-0 w-screen bg-white pb-4">
         <div className="w-[95vw] md:w-[65vw] rounded-full bg-gray-200 py-5 px-7 mx-auto">
           <form onSubmit={handleGenerateResponse} className="flex">

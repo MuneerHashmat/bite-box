@@ -1,6 +1,4 @@
 import assets from "../assets/assets";
-import Navbar from "../components/Navbar";
-import Footer from "./../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +30,6 @@ const Cart = () => {
   };
   return (
     <div className="pt-24">
-      <Navbar />
       <div className="w-[90vw] sm:w-[600px] min-h-[50vh] bg-[#fc8019] mx-auto mt-5 py-3 px-2 overflow-auto relative">
         {cartItems.length == 0 ? (
           <div className="text-white flex flex-col gap-4 items-center">
@@ -127,7 +124,6 @@ const Cart = () => {
           </div>
         </div>
       )}
-      <Footer />
     </div>
   );
 };
