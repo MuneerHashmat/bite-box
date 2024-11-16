@@ -2,7 +2,7 @@ import assets from "../assets/assets";
 
 const GetApp = () => {
   return (
-    <div className="bg-[#fc8019] h-screen sm:h-full flex sm:flex-row flex-col justify-center items-center gap-4 pt-[90px] sm:pb-10">
+    <div className="bg-[#fc8019] h-screen flex sm:flex-row flex-col justify-center items-center gap-4 pt-[120px] sm:pb-10">
       <div className="flex flex-col gap-1 items-center text-white font-bold text-md sm:text-xl">
         <h1>Get the official app</h1>
         <img src={assets.phone} className="sm:w-[300px] w-[200px]" />

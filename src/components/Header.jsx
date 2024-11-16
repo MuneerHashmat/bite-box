@@ -3,7 +3,7 @@ import assets from "../assets/assets";
 const Header = () => {
   return (
     <div className="relative w-screen md:w-[80vw] md:h-[75vh] h-[60vw] mx-auto">
-      <div className=" bg-alpha md:p-5 p-[2%] flex flex-col items-start justify-around w-[90%] md:w-[60%] h-[80%] md:h-[50%]  absolute md:top-[20%] top-[10%] left-[5%]">
+      <div className="bg-alpha md:p-5 p-[2%] flex flex-col items-start justify-around w-[90%] md:w-[60%] h-[80%] md:h-[50%]  absolute md:top-[20%] top-[10%] left-[5%]">
         <h1 className="font-bold md:text-[2rem] text-[1.5rem]">
           Hungry? We Got You.
         </h1>
