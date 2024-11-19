@@ -47,6 +47,8 @@ const Login = () => {
         toast.error("Invalid email or password. Please try again.", {
           duration: 2000,
         });
+      } else {
+        toast.error("Something went wrong! Please try after some time");
       }
     } finally {
       setLoading(false);

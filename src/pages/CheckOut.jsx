@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetCart } from "../reducers/cartSlice";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { RAZORPAY_API_KEY } from "../utils/apiKeys";
 
 const CheckOut = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const CheckOut = () => {
 
   const handlePayment = () => {
     const options = {
-      key: "rzp_test_3dWNQviGU2CH6t",
+      key: RAZORPAY_API_KEY,
       amount: amount,
       currency: "INR",
       name: "Bite Box",

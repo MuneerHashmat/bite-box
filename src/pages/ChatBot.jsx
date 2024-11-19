@@ -7,9 +7,10 @@ import Markdown from "react-markdown";
 import { SyncLoader } from "react-spinners";
 import "../utils/chatbot.css";
 import { useSelector } from "react-redux";
+import { GEMINI_API_KEY } from "../utils/apiKeys";
 
 const ChatBot = () => {
-  const apiKey = "AIzaSyByGcrMCfMKZNNta-wdWMeuPXPWlZWlt8Y";
+  const apiKey = GEMINI_API_KEY;
   const genAI = new GoogleGenerativeAI(apiKey);
   const storedChats = sessionStorage.getItem("chats");
   const initialChats = storedChats ? JSON.parse(storedChats) : [];

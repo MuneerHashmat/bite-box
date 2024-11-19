@@ -51,6 +51,8 @@ const SignUp = () => {
     } catch (e) {
       if (e.code === "auth/email-already-in-use") {
         toast.error("Email already in use!", { duration: 2000 });
+      } else {
+        toast.error("Spmething went wrong! Please try again after some time.");
       }
     } finally {
       setLoading(false);
