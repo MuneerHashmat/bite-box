@@ -8,6 +8,7 @@ import { SyncLoader } from "react-spinners";
 import "../utils/chatbot.css";
 import { useSelector } from "react-redux";
 import { GEMINI_API_KEY } from "../utils/apiKeys";
+import toast from "react-hot-toast";
 
 const ChatBot = () => {
   const apiKey = GEMINI_API_KEY;
@@ -22,7 +23,7 @@ const ChatBot = () => {
 
   const generteResponse = async (prompt) => {
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
       const result = await model.generateContent(prompt);
       const response = result.response;
       const responseText = response.text();
@@ -30,6 +31,7 @@ const ChatBot = () => {
       return responseText;
     } catch (e) {
       console.log(e);
+      toast.error("Gemini server error!");
     }
   };
 
