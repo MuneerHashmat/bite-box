@@ -28,13 +28,13 @@ const Navbar = () => {
 
   return (
     <div className="w-screen fixed top-0 flex justify-between items-center py-2 px-5 sm:px-10 lg:px-20 shadow-md z-20 bg-white">
-      <div>
+      <Link to="/">
         <img
           src={assets.main_logo}
           alt="logo"
           className="md:h-[50px] h-[35px]"
         />
-      </div>
+      </Link>
 
       <ul className="md:flex hidden text-lg items-center gap-8">
         <li
