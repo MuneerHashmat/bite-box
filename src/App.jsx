@@ -13,7 +13,7 @@ import GetApp from "./pages/GetApp";
 import ChatBot from "./pages/ChatBot";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
-import Layout from "./layout/Layout";
+import NavbarLayout from "./layout/NavbarLayout";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -22,45 +22,18 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout>
-                <Home />
-              </Layout>
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              user.active ? (
-                <Layout>
-                  <Cart />
-                </Layout>
-              ) : (
-                <Navigate to={"/login"} />
-              )
-            }
-          />
+          <Route element={<NavbarLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/cart"
+              element={user.active ? <Cart /> : <Navigate to={"/login"} />}
+            />
+            <Route path="/getapp" element={<GetApp />} />
+            <Route path="/chatbot" element={<ChatBot />} />
+          </Route>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<CheckOut />} />
-          <Route
-            path="/getapp"
-            element={
-              <Layout>
-                <GetApp />
-              </Layout>
-            }
-          />
-          <Route
-            path="/chatbot"
-            element={
-              <Layout>
-                <ChatBot />
-              </Layout>
-            }
-          />
         </Routes>
       </Router>
     </>
