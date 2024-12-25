@@ -1,6 +1,6 @@
 import main_logo from "./main_logo.png";
 import header_img from "./header_img.png";
-import header from "./header.png";
+import header from "./header.jpg";
 import cover from "./cover.jpg";
 import facebook from "./facebook.svg";
 import discord from "./discord.svg";
