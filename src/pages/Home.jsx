@@ -1,11 +1,11 @@
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Hero from "../components/Hero";
 import Menu from "../components/Menu";
 
 const Home = () => {
   return (
     <div className=" pt-24">
-      <Header />
+      <Hero />
       <Menu />
       <Footer />
     </div>

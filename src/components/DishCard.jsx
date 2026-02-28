@@ -46,15 +46,17 @@ const DishCard = ({ dish }) => {
     }
   };
   return (
-    <div className="sm:w-[400px] md:w-[290px] w-[95vw]  rounded-md overflow-hidden cursor-pointer shadow-md relative">
-      <img
+    <div className="rounded-md overflow-hidden cursor-pointer shadow-md relative">
+      <div className="overflow-hidden">
+        <img
         src={dish.image}
         alt={dish.name}
-        className="w-full object-cover hover:scale-110 transition-all h-[256px]"
+        className="w-full object-cover hover:scale-110 transition-all duration-300 h-[256px]"
       />
+      </div>
 
       <div className="px-4 py-2 mt-6 flex flex-col gap-2">
-        <h1 className="font-bold text-xl text-gray-700">{dish.name}</h1>
+        <h1 className=" font-semibold text-xl text-gray-700">{dish.name}</h1>
         <div className="text-sm text-gray-500 flex gap-3">
           <span>
             <LocalShipping sx={{ fontSize: "16px", color: "orange" }} /> Free

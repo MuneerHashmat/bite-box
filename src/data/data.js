@@ -87,7 +87,7 @@ export const menuItems = [
   return { ...item, active: false };
 });
 
-export const foodItems = [
+export const foodItems2 = [
   {
     id: "13",
     name: "Chicken Sandwich",
